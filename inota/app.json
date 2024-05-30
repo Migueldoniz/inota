@@ -8,6 +8,20 @@
         "projectId": "0a4769f2-2192-4a98-912b-c1dc2cd7b829"
       }
     },
-    "owner": "silva.rodrigues"
+    "owner": "silva.rodrigues",
+    "plugins": [
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
+        }
+      ]
+    ],
+    "android": {
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "package": "com.silva.rodrigues.inota"
+    }
   }
 }

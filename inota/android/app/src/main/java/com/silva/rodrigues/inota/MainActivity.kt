@@ -1,4 +1,4 @@
-package com.inota
+package com.silva.rodrigues.inota
 
 import android.os.Build
 import android.os.Bundle
