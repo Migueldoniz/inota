@@ -2,6 +2,12 @@
   "expo": {
     "name": "inota",
     "slug": "inota",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "extra": {
+      "eas": {
+        "projectId": "0a4769f2-2192-4a98-912b-c1dc2cd7b829"
+      }
+    },
+    "owner": "silva.rodrigues"
   }
 }
