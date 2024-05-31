@@ -10,29 +10,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-
+import LabelRecognizerScreen from './componentes/LabelRecognition';
 const Stack = createStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
-
-  const loadFonts = async () => {
-    await Font.loadAsync({
-      'Textbar': require('./static/fonts/LibreBarcode128Text-Regular.ttf'),
-    });
-    setFontsLoaded(true);
-    // Esconde a tela de splash após carregar as fontes
-    await SplashScreen.hideAsync();
-  };
-
-  useEffect(() => {
-    loadFonts();
-  }, []);
-
-  if (!fontsLoaded) {
-    return null; // Aguardando as fontes carregarem
-  }
   return (
     <SafeAreaView style={{flex:1}}>
       <NavigationContainer>
@@ -42,11 +24,7 @@ export default function App() {
             component={InicialScreen} 
             options={{ headerShown: false }}
           />
-          <Stack.Screen 
-            name="Login" 
-            component={LoginScreen} 
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name="LabelRecognizer" component={LabelRecognizerScreen} />
         </Stack.Navigator> 
       </NavigationContainer>
     </SafeAreaView>

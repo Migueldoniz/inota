@@ -1,11 +1,12 @@
-// screens/LoginScreen.js
+// LoginScreen.js
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Tela de Login</Text>
+      <Text style={styles.text}>Login Screen</Text>
+      <Button title="Scan Label" onPress={() => navigation.navigate('LabelRecognizer')} />
     </View>
   );
 };
@@ -15,11 +16,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
   },
   text: {
     fontSize: 24,
-    fontWeight: 'bold',
+    marginBottom: 20,
   },
 });
 
