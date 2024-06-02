@@ -9,14 +9,6 @@
       }
     },
     "owner": "silva.rodrigues",
-    "plugins": [
-      [
-        "react-native-vision-camera",
-        {
-          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
-        }
-      ]
-    ],
     "android": {
       "permissions": [
         "android.permission.CAMERA"

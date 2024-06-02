@@ -1,41 +1,41 @@
 // LabelRecognizerScreen.js
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { Camera, useCameraDevices } from 'react-native-vision-camera';
-import { DynamsoftLabelRecognizerPlugin } from 'vision-camera-dynamsoft-label-recognizer';
+// import { Camera, useCameraDevices } from 'react-native-vision-camera';
+// import { DynamsoftLabelRecognizerPlugin } from 'vision-camera-dynamsoft-label-recognizer';
 
 const LabelRecognizerScreen = ({ navigation }) => {
-  const devices = useCameraDevices();
-  const device = devices.back;
+  // const devices = useCameraDevices();
+  // const device = devices.back;
 
-  useEffect(() => {
-    (async () => {
-      const status = await Camera.requestCameraPermission();
-      if (status === 'denied') {
-        // Handle the case where permission was denied
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const status = await Camera.requestCameraPermission();
+  //     if (status === 'denied') {
+  //       // Handle the case where permission was denied
+  //     }
+  //   })();
+  // }, []);
 
-  const handleLabelRecognized = (labels) => {
-    // Process recognized labels
-    console.log(labels);
-    // You can navigate to the login screen or handle login logic here
-    navigation.navigate('Login');
-  };
+  // const handleLabelRecognized = (labels) => {
+  //   // Process recognized labels
+  //   console.log(labels);
+  //   // You can navigate to the login screen or handle login logic here
+  //   navigation.navigate('Login');
+  // };
 
-  if (device == null) return <Text>Loading...</Text>;
+  // if (device == null) return <Text>Loading...</Text>;
 
   return (
     <View style={styles.container}>
-      <Camera
+      {/* <Camera
         style={StyleSheet.absoluteFill}
         device={device}
         isActive={true}
         frameProcessor={DynamsoftLabelRecognizerPlugin.processFrame}
         onFrameProcessed={handleLabelRecognized}
         frameProcessorFps={5}
-      />
+      /> */}
       <View style={styles.overlay}>
         <Text style={styles.text}>Scan your label</Text>
         <Button title="Cancel" onPress={() => navigation.goBack()} />
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    color: 'white',
+    color: 'black',
     marginBottom: 10,
   },
 });

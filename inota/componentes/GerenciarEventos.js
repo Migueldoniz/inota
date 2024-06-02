@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import EventsContext from './EventContextFile';
 import EventForm from './EventForm';
 import { Alert } from 'react-native';
+
 const Stack = createNativeStackNavigator()
 
 export default props => {

@@ -10,7 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useState, useEffect } from 'react';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import LabelRecognizerScreen from './componentes/LabelRecognition';
+// import LabelRecognizerScreen from './componentes/LabelRecognition';
 const Stack = createStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
@@ -18,13 +18,23 @@ export default function App() {
   return (
     <SafeAreaView style={{flex:1}}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="InicialScreen">
         <Stack.Screen 
             name="InicialScreen" 
             component={InicialScreen} 
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="LabelRecognizer" component={LabelRecognizerScreen} />
+        <Stack.Screen 
+            name="LoginScreen" 
+            component={LoginScreen} 
+            options={{ headerShown: false }}
+          />
+        <Stack.Screen 
+            name="Tab" 
+            component={Tab} 
+            options={{ headerShown: false }}
+          />
+          {/* <Stack.Screen name="LabelRecognizer" component={LabelRecognizerScreen} /> */}
         </Stack.Navigator> 
       </NavigationContainer>
     </SafeAreaView>
