@@ -6,21 +6,38 @@ import { AuthContext } from './Context'
 
 const LoginScreen = ({ navigation }) => {
   
+  const [data, setData] = React.useState({
+    username: '',
+    password: '',
+    isValidUser: true,
+    isValidPassword: true,
+  });
+
   const { signIn } = React.useContext(AuthContext);
+  const { changeToSignIn } = React.useContext(AuthContext);
+
+  const loginHandle = (username, password) => {
+    signIn(username,password);
+  }
 
   return (
     <View style={styles.container}>
       <Image
         source={require('../static/images/Inota.png')} 
         style={styles.image}
-      />
+        />
         <TextInput
           style={styles.input}
           underlineColorAndroid="white"
           placeholder="Usuário"
           placeholderTextColor="white"
           textColor="white"
-        />
+          onChangeText={val => setData({
+            ...data,
+            username: val
+          })
+        }
+          />
         <TextInput
           style={styles.input}
           blurOnSubmit="true"
@@ -28,13 +45,20 @@ const LoginScreen = ({ navigation }) => {
           placeholder="Senha"
           placeholderTextColor="white"
           textColor="white"
-          secureTextEntry={true} 
-        />
+          secureTextEntry={true}
+          onChangeText={val => setData({
+            ...data,
+            password: val
+          })
+        }
+          />
       <Button 
       mode="contained" 
       buttonColor='white' 
       textColor='#054F77' 
-      onPress={() => {signIn()}}
+      onPress={() => 
+        {loginHandle(data.username, data.password)}
+      }
       style={{top:30, width:150}}>
         Entrar
       </Button>
@@ -42,8 +66,9 @@ const LoginScreen = ({ navigation }) => {
       mode="contained" 
       buttonColor='white' 
       textColor='#054F77' 
-      onPress={() => navigation.navigate('Tab')}
-      style={{top:50, width:150}}>
+      onPress={() => 
+        {changeToSignIn()}
+      }      style={{top:50, width:150}}>
         Cadastrar
       </Button>
     </View>

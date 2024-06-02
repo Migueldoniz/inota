@@ -1,12 +1,9 @@
 // screens/InicialScreen.js
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Image } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
-import {LoginScreen} from './Login'
 
 const Stack = createStackNavigator();
 
@@ -14,7 +11,7 @@ const InicialScreen = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('LoginScreen');
-    }, 3800);
+    }, 2500);
     return () => clearTimeout(timer);
   }, [navigation]);
 
