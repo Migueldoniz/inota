@@ -10,6 +10,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { AuthContext } from './componentes/Context';
 import CriarConta from './componentes/CriarConta';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import getData from './componentes/GetData';
+
 
 // import LabelRecognizerScreen from './componentes/LabelRecognition';
 const Stack = createStackNavigator();
@@ -17,14 +19,14 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 
-  // const [userToken, setUserToken] = React.useState(null);
-  // const [interaction, setInteraction] = React.useState(false)
-
+  //constrola telas
   const initialLoginState = {
     interaction: false,
     userName: null,
     userToken: null,
   }
+
+  const [usuarioLogado, setUsuariosLogados] = React.useState(null)
 
   loginReducer = (prevState, action) => {
     switch(action.type) {
@@ -47,7 +49,7 @@ export default function App() {
           ...prevState,
           userName: action.id,
           userToken: action.token,
-          interaction: true,
+          interaction: false,
           };
         case 'GOBACK' :
           return {
@@ -70,51 +72,31 @@ export default function App() {
   
   const authContext = React.useMemo(() => ({
     signIn: async(username, password) => {
-        try {
-          await AsyncStorage.getItem('username')
-          .then(user => {
-            if (user != null) {
-              AsyncStorage.getItem('password')
-              .then(pass => {
-                if (pass != null) {
-                  dispatch({ type: 'LOGIN', id: username, token: userToken})
-                }
-              })
-            }
-            else {
-              Alert.alert(
-                'Login ou senha inválido', 
-                'Login senha não cadastrado, deseja cadastrar?',
-                [
-                    {text: 'sim', onPress: () =>  
-                      dispatch({type: 'LOGIN', id: null, token: null})},
-                    {text: 'não'}
-                ],
-                {
-                    cancelable: false,
-                }
-            )
-            }
-          })
-        } catch(e) {
-          console.error('Erro ao buscar usuário');
-        }
+      const data = await getData(JSON.stringify(username))
+      let aux = JSON.parse(data)
+
+      if (aux.password == password) {
+        console.log('Senha correta')
+        setUsuariosLogados(aux.username)
+        dispatch({ type: 'LOGIN', id: aux.username, token: aux.userToken})
+      }
+      else {
+        console.log('errado')
+      }
+
     },
-    signOut: async() => {
-      // setUserToken(null)
-      // setInteraction(false)
+    signOut: async(username) => {
       try {
-        await AsyncStorage.removeItem('userToken')
+        console.warn('Usuário', username, 'apagado')
+        await AsyncStorage.removeItem(username)
       } catch(e) {
         console.error('Erro ao remover usuário');
       }
       dispatch({ type: 'LOGOUT'})
     },
     signUp: async(data) => {
-      // setUserToken(Math.random() * 1000)
-      // setInteraction(false)
         try {
-          await AsyncStorage.setItem('user', JSON.stringify(data))
+          await AsyncStorage.setItem(JSON.stringify(data.username), JSON.stringify(data))
         } catch(e) {
           console.error('Erro ao cadastrar usuário');
         }
@@ -127,17 +109,6 @@ export default function App() {
       dispatch({ type: 'CHANGESIGNIN'})
     }
   }))
-
-  async function loadUsers() {
-    //TODO
-  }
-
-  React.useEffect(() => {
-    //TODO
-    const fetchData = async () => {
-      const data = await fetchData()
-    }
-})
 
   return (
     <SafeAreaView style={{flex:1}}>
@@ -159,21 +130,24 @@ export default function App() {
           </NavigationContainer>
       ) :
           <NavigationContainer>
-          <Stack.Navigator> 
           {loginState.userToken != null ? (
+            <Stack.Navigator>
             <Stack.Screen 
+            initialParams={{usuarioLogado}}
             name="Tab" 
             component={Tab} 
             options={{ headerShown: false }}
             />
+          </Stack.Navigator> 
           ) :
+          <Stack.Navigator> 
           <Stack.Screen 
           name="CriarConta" 
           component={CriarConta} 
           options={{ headerShown: false }}
           />
-          }    
         </Stack.Navigator> 
+          }    
       </NavigationContainer>
       }
 

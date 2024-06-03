@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, Dimensions, Alert } from 'react-nati
 import { Button } from 'react-native-paper';
 import { Image } from 'react-native';
 import { AuthContext } from './Context'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import getData from './GetData';
 
 const LoginScreen = ({ navigation }) => {
   
@@ -11,18 +11,18 @@ const LoginScreen = ({ navigation }) => {
     username: '',
     password: '',
     samePassword: '',
-    userToken: null
+    userToken: Math.random() * 100,
   });
-  const [flag, setFlag] = React.useState(true)
+  const [flag, setFlag] = React.useState(false)
 
   const { signUp } = React.useContext(AuthContext);
-  const { signOut } = React.useContext(AuthContext);
+  const { goBack } = React.useContext(AuthContext);
 
 
-  const checkLogin = async(username, password, samePassword) => {
-    try {
-        let aux = await AsyncStorage.getItem(username)
-        if (aux != null) {
+  const checkLogin = async(data) => {
+      const dados = await getData(JSON.stringify(data.username))
+
+      if (dados != null) {
             Alert.alert(
                 'Usuário já cadastrado', 
                 'O nome de usuário que está tentando cadastrar já foi utilizado, tentre outro',
@@ -34,62 +34,47 @@ const LoginScreen = ({ navigation }) => {
                 }
             )
         }
-        else {
-            setFlag(true)
+        else if (data.username.length == 0) {
+            Alert.alert(
+                'Nome inválido', 
+                'O campo de nome não pode ser vazio',
+                [
+                    {text: 'Ok', onPress: () =>  setFlag(false)}
+                ],
+                {
+                    cancelable: false,
+                }
+            )
         }
-    } catch(e) {
-        console.error('erro ao localizar usuário')
-    }
-    if (data.password != data.samePassword) {
-        Alert.alert(
-            'Senhas diferentes', 
-            'As senhas devem coincidir',
-            [
-                {text: 'Ok', onPress: () =>  setFlag(false)}
-            ],
-            {
-                cancelable: false,
-            }
-        )
-    }
-    else {
-        setFlag(true)
-    }
-    if (data.username.length == 0) {
-        Alert.alert(
-            'Nome inválido', 
-            'O campo de nome não pode ser vazio',
-            [
-                {text: 'Ok', onPress: () =>  setFlag(false)}
-            ],
-            {
-                cancelable: false,
-            }
-        )
-    }
-    else {
-        setFlag(true)
-    }
-    if (data.password.length == 0) {
-        Alert.alert(
-            'Senha inválida', 
-            'O campo de senha não pode ser vazio',
-            [
-                {text: 'Ok', onPress: () =>  setFlag(false)}
-            ],
-            {
-                cancelable: false,
-            }
-        )
-    }
+        else if (data.password.length == 0) {
+            Alert.alert(
+                'Senha inválida', 
+                'O campo de senha não pode ser vazio',
+                [
+                    {text: 'Ok', onPress: () =>  setFlag(false)}
+                ],
+                {
+                    cancelable: false,
+                }
+            )
+        }
+      else if (data.password != data.samePassword) {
+          Alert.alert(
+              'Senhas diferentes', 
+              'As senhas devem coincidir',
+              [
+                  {text: 'Ok', onPress: () =>  setFlag(false)}
+              ],
+              {
+                  cancelable: false,
+              }
+          )
+      }
     else {
         setFlag(true)
     }
 
     if (flag == true) {
-        setData({
-            ...data,
-            userToken: Math.random()*100})
         registerHandle(data)
     }
   }
@@ -149,7 +134,7 @@ const LoginScreen = ({ navigation }) => {
       buttonColor='white' 
       textColor='#054F77' 
       onPress={() => 
-        {checkLogin(data.username, data.password, data.samePassword)}
+        {checkLogin(data)}
       }
       style={{top:30, width:150}}>
         Registrar
@@ -158,7 +143,7 @@ const LoginScreen = ({ navigation }) => {
       mode="contained" 
       buttonColor='white' 
       textColor='#054F77' 
-      onPress={() => signOut()}      
+      onPress={() => goBack()}      
       style={{top:50, width:150}}>
         Voltar
       </Button>

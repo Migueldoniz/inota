@@ -7,7 +7,10 @@ import LabelRecognition from "./LabelRecognition"
 
 const Tab = createBottomTabNavigator()
 
-export default props => (
+
+export default function Tabs ({route}) {
+    const {usuarioLogado} = route.params
+    return (
     <Tab.Navigator screenOptions={{
         tabBarActiveTintColor:'#1FB9EC',
         tabBarInactiveTintColor: '#E6F9FF',
@@ -15,18 +18,19 @@ export default props => (
         tabBarInactiveBackgroundColor: "#054F77",
         tabBarLabelStyle: {fontSize: 15}
     }}
-    initialRouteName=""> 
+    initialRouteName="Camera"> 
          <Tab.Screen name="Camera" component={LabelRecognition} 
          options={{
-            tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="camera" color={color} size={size} />
-            ),
-            tabBarShowLabel: false,
-            headerShown:false,
-            title: 'Câmera'
-         }}
-         /> 
+             tabBarIcon: ({ color, size }) => (
+                 <MaterialCommunityIcons name="camera" color={color} size={size} />
+                ),
+                tabBarShowLabel: false,
+                headerShown:false,
+                title: 'Câmera'
+            }}
+            /> 
          <Tab.Screen name="Dashboard" component={Dashboard}
+            initialParams = {{usuarioLogado}}
          options={{
             tabBarIcon: ({ color, size }) => (
                 <MaterialCommunityIcons name="view-dashboard" color={color} size={size} />
@@ -45,4 +49,5 @@ export default props => (
             title: 'Seus eventos'
          }}/> 
     </Tab.Navigator>
-)
+    )
+}

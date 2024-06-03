@@ -3,10 +3,11 @@ import { View, Text } from "react-native"
 import { Button } from 'react-native-paper';
 import { AuthContext } from "./Context";
 
-export default props => {
+export default function Dashboard({route}){
 
-    const { signOut } = React.useContext(AuthContext)
-    const { goBack } = React.useContext(AuthContext)
+  const { signOut, goBack } = React.useContext(AuthContext)
+
+  const usuarioLogado = route.params;
 
     return (
         <View>
@@ -14,7 +15,7 @@ export default props => {
           mode="contained" 
           buttonColor='white' 
           textColor='#054F77' 
-          onPress={() => signOut()}
+          onPress={() => signOut(JSON.stringify(usuarioLogado.usuarioLogado))}
           style={{top:30, width:150}}>
             Deslogar
             </Button>
@@ -25,6 +26,14 @@ export default props => {
           onPress={() => goBack()}
           style={{top:30, width:150}}>
             Voltar
+            </Button>
+            <Button
+          mode="contained" 
+          buttonColor='white' 
+          textColor='#054F77' 
+          onPress={() => console.log({usuarioLogado})}
+          style={{top:30, width:150}}>
+            mostrar
             </Button>
         </View>
         )

@@ -1,23 +1,75 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Dimensions, useContext } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Dimensions, useContext, Alert } from 'react-native';
 import { Button } from 'react-native-paper';
 import { Image } from 'react-native';
 import { AuthContext } from './Context'
+import getData from './GetData';
 
 const LoginScreen = ({ navigation }) => {
   
   const [data, setData] = React.useState({
     username: '',
     password: '',
-    isValidUser: true,
-    isValidPassword: true,
   });
+
+  const [flag, setFlag] = React.useState(false)
 
   const { signIn } = React.useContext(AuthContext);
   const { changeToSignIn } = React.useContext(AuthContext);
 
+  const checkLogin = async (username, password) => {
+    const data = await getData(JSON.stringify(username))
+    
+  if (username.length == 0) {
+      Alert.alert(
+          'Nome inválido', 
+          'O campo de nome não pode ser vazio',
+          [
+              {text: 'Ok', onPress: () =>  setFlag(false)}
+          ],
+          {
+              cancelable: false,
+          }
+      )
+  }
+
+  else if (password.length == 0) {
+      Alert.alert(
+          'Senha inválida', 
+          'O campo de senha não pode ser vazio',
+          [
+              {text: 'Ok', onPress: () =>  setFlag(false)}
+          ],
+          {
+              cancelable: false,
+          }
+      )
+  }
+
+  else if (data == null) {
+        Alert.alert(
+            'Usuário não encontrado', 
+            'O nome de usuário que está tentando logar não existe',
+            [
+                {text: 'Ok', onPress: () =>  setFlag(false)}
+            ],
+            {
+                cancelable: false,
+            }
+        )
+    }
+
+  else {
+      setFlag(true)
+  }
+
+  if (flag == true) {
+      loginHandle(username, password)
+  }
+}
+
   const loginHandle = (username, password) => {
-    signIn(username,password);
+    signIn(username, password);
   }
 
   return (
@@ -57,7 +109,7 @@ const LoginScreen = ({ navigation }) => {
       buttonColor='white' 
       textColor='#054F77' 
       onPress={() => 
-        {loginHandle(data.username, data.password)}
+        {checkLogin(data.username, data.password)}
       }
       style={{top:30, width:150}}>
         Entrar

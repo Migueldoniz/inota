@@ -11,7 +11,7 @@ const InicialScreen = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('LoginScreen');
-    }, 2500);
+    }, 100);
     return () => clearTimeout(timer);
   }, [navigation]);
 
