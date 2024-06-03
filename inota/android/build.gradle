@@ -22,6 +22,7 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+apply from: 'autolinking.gradle'
 
 allprojects {
     repositories {
