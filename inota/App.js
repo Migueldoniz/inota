@@ -10,6 +10,7 @@ import { AuthContext } from './componentes/Context';
 import CriarConta from './componentes/CriarConta';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import getData from './componentes/GetData';
+import 'react-native-reanimated'
 
 const Stack = createStackNavigator();
 

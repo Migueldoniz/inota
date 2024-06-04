@@ -10,6 +10,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import LabelRecognition from "./LabelRecognition"
+import CameraScreen from "./CameraFoto";
 const Tab = createBottomTabNavigator()
 
 export default function Tabs ({route}) {
@@ -81,6 +83,15 @@ export default function Tabs ({route}) {
         }}
         initialRouteName="Camera"> 
         <Tab.Screen name="Camera" component={LabelRecognizerScreen} 
+    <Tab.Navigator screenOptions={{
+        tabBarActiveTintColor:'#1FB9EC',
+        tabBarInactiveTintColor: '#E6F9FF',
+        tabBarActiveBackgroundColor: "#054F77",
+        tabBarInactiveBackgroundColor: "#054F77",
+        tabBarLabelStyle: {fontSize: 15}
+    }}
+    initialRouteName="Camera"> 
+         <Tab.Screen name="Camera" component={CameraScreen} 
          options={{
              tabBarIcon: ({ color, size }) => (
                  <MaterialCommunityIcons name="camera" color={color} size={size} />

@@ -3,6 +3,9 @@
     "name": "inota",
     "slug": "inota",
     "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "extra": {
       "eas": {
         "projectId": "0a4769f2-2192-4a98-912b-c1dc2cd7b829"
@@ -14,6 +17,17 @@
         "android.permission.CAMERA"
       ],
       "package": "com.silva.rodrigues.inota"
-    }
+    },
+    "plugins": [
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
+          "enableMicrophonePermission": true,
+          "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone."
+        }
+      ],
+      "expo-font"
+    ]
   }
 }
