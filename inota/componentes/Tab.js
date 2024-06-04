@@ -110,7 +110,8 @@ export default function Tabs ({route}) {
             tabBarShowLabel: false,
             title: 'Seus eventos'
          }}/> 
-         {/* <Tab.Screen name="Gerenciar" component={Gerenciar}
+         <Tab.Screen name="Gerenciar" component={Gerenciar}
+            initialParams = {{usuarioLogado}}
          options={{
             tabBarIcon: ({ color, size }) => (
                 <MaterialCommunityIcons name="history" color={color} size={size} />
@@ -118,7 +119,7 @@ export default function Tabs ({route}) {
             headerShown:false,
             tabBarShowLabel: false,
             title: 'Gerenciar'
-        }}/> */}
+        }}/>
         </Tab.Navigator>
         </NavigationContainer>
         </ItemContext.Provider>

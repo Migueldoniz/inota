@@ -98,6 +98,7 @@ export default function Dashboard({route}){
     <View style={{padding: 20, alignItems: 'center'}}>
       <PieChart
         data={dataPie}
+        focusOnPress
         donut
         showGradient
         sectionAutoFocus
