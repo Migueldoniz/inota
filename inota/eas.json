@@ -1,18 +1,27 @@
 {
-  "cli": {
-    "version": ">= 9.1.0"
-  },
   "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {}
-  },
-  "submit": {
-    "production": {}
+  // Configurações para o modo de visualização "preview"
+  "preview": {
+  // Configurações específicas para a plataforma Android
+  "android": {
+  // Define o tipo de build como "apk"
+  "buildType": "apk"
   }
-}
+  },
+  // Outras configurações para o modo de visualização "preview"
+  "preview2": {
+  // Configurações específicas para a plataforma Android
+  "android": {
+  // Define o comando Gradle para montar o aplicativo no modo de lançamento com ":app:assembleRelease"
+  "gradleCommand": ":app:assembleRelease"
+  }
+  },
+  // Outras configurações para o modo de visualização "preview"
+  "preview3": {
+  // Define que é um cliente de desenvolvimento
+  "developmentClient": true
+  },
+  // Configurações para o modo de produção do aplicativo
+  "production": {}
+  }
+  }

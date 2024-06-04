@@ -11,7 +11,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Gerenciar from "./Gerenciar";
 
-import LabelRecognition from "./LabelRecognition"
 import CameraScreen from "./CameraFoto";
 const Tab = createBottomTabNavigator()
 
