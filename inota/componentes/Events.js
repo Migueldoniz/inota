@@ -23,37 +23,37 @@
 // ]
 
 function generateRandomUser(id) {
-    const nome_evento = ['Abertura da copa de 2004', 
-                          'Show do Detonautas', 
-                          "Concurso Anual de Barbas de Três Cores em Miniatura",
-                          "Campeonato Internacional de Malabarismo com Frutas Exóticas",
-                          "Festival de Música para Robôs Domésticos",
-                          "Competição de Esculturas de Gelo em Forma de Utensílios de Cozinha",
-                          "Desfile de Moda Subaquático para Sereias Mecânicas",
-                          "Olimpíadas de Corrida de Carros de Controle Remoto em Pistas de Borracha",
-                          "Exposição de Arte Abstrata Feita por Macacos Treinados",
-                          "Festival de Dança das Árvores Falantes"];
-    const data = ["2024-06-15",
-                  "2024-09-28",
-                  "2024-11-03",
-                  "2024-07-12",
-                  "2024-10-05",
-                  "2024-08-21",
-                  "2024-12-09",
-                  "2024-07-30",
-                  "2024-11-16",
-                  "2024-09-02"];
+    const nome_evento = ['Cachorro quente', 
+                          'Creme de barbear', 
+                          "Bicicleta",
+                          "Arroz branco",
+                          "Doação",
+                          "Presente Aniversário",
+                          "Feijão tropeiro",
+                          "Vodka 2Litros",
+                          "Brinquedo",
+                          "Lanche"];
+    const data = ["R$ 10,00",
+                  "R$ 0,10",
+                  "R$ 10,00",
+                  "R$ 3,50",
+                  "R$ 2,00",
+                  "R$ 20,00",
+                  "R$ 3,50",
+                  "R$ 14,00",
+                  "R$ 100,00",
+                  "R$ 40,00"];
     
-    const lugares = ["Paris, França",
-                     "Tóquio, Japão",
-                     "Rio de Janeiro, Brasil",
-                     "Sydney, Austrália",
-                     "Nova York, Estados Unidos",
-                     "Cairo, Egito",
-                     "Roma, Itália",
-                     "Cidade do Cabo, África do Sul",
-                     "Moscou, Rússia",
-                     "Bangkok, Tailândia"]
+    const lugares = ["Comida",
+                     "Comida",
+                     "Bebida",
+                     "Lazer",
+                     "Outro",
+                     "Comida",
+                     "Lazer",
+                     "Comida",
+                     "Lazer",
+                     "Bebida"]
     const avatars = [
         'https://conectanuvem.com.br/wp-content/uploads/2022/11/Capas-Blog-Imagem-destacadas-2022-44-865x576.png',
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHicDFrDAZZsD1eDcWCrIzfpf_EgJYeHcGrCHm70ylGQ&s',
@@ -70,7 +70,7 @@ function generateRandomUser(id) {
       
     const randomIndex = Math.floor(Math.random() * nome_evento.length);
     const randomAvatarIndex = Math.floor(Math.random() * avatars.length);
-    const randomQtdIngressos = Math.floor(Math.random() * 1000);
+    const randomQtdIngressos = Math.floor(Math.random() * 5 + 1);
     
     return {
       id,

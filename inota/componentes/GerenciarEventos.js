@@ -23,44 +23,10 @@ export default props => {
                 <Stack.Screen
                 name="EventList"
                 component={EventsList}
-                options={({ navigation }) => {
-                    const {state, dispatch} = useContext(EventsContext)
-                    return {
-                        title: 'Gerenciar eventos',
-                        headerRight: () => (
-                            <>
-                          <Button
-                            onPress={() => navigation.navigate('EventForm')}
-                            type='clear' // pode ser solid ou outline, nesse caso é sem fundo
-                            icon={<Icon name="add" size={25} color="black" />} />
-                          <Button
-                          onPress={() => 
-                            Alert.alert('Excluir Eventos', 'Deseja excluir a lista de eventos?', [
-                                {
-                                    text: 'Sim',
-                                    onPress(){
-                                        dispatch({
-                                            type: 'deleteAll'
-                                        })
-                                    }
-                                },
-                                {
-                                    text: 'Não'
-                                }
-                            ])
-                        }
-                          type='clear' // pode ser solid ou outline, nesse caso é sem fundo
-                          icon={<Icon name="delete" size={25} color="black" />} />
-                        </>
-                      )
-                    }
+                options={ {
+                    headerShown:false      
                 }}
             />
-                <Stack.Screen
-                name="EventForm"
-                component={EventForm}
-                options={{ title: 'Adicionar Evento' }}
-                />
                 </Stack.Navigator>
             </NavigationContainer>
         </EventsProvider>

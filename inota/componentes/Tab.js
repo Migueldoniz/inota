@@ -9,6 +9,7 @@ import { ItemContext } from "./ItemContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Gerenciar from "./Gerenciar";
 
 const Tab = createBottomTabNavigator()
 
@@ -79,7 +80,7 @@ export default function Tabs ({route}) {
             tabBarInactiveBackgroundColor: "#054F77",
             tabBarLabelStyle: {fontSize: 15}
         }}
-        initialRouteName="Camera"> 
+        initialRouteName="Dashboard"> 
         <Tab.Screen name="Camera" component={LabelRecognizerScreen} 
          options={{
              tabBarIcon: ({ color, size }) => (
@@ -100,7 +101,7 @@ export default function Tabs ({route}) {
             tabBarShowLabel: false,
             title: 'Dashboard'
          }}/> 
-        <Tab.Screen name="Historico" component={ItemList}
+        <Tab.Screen name="Historico" component={GerenciarEventos}
          options={{
             tabBarIcon: ({ color, size }) => (
                 <MaterialCommunityIcons name="history" color={color} size={size} />
@@ -109,6 +110,15 @@ export default function Tabs ({route}) {
             tabBarShowLabel: false,
             title: 'Seus eventos'
          }}/> 
+         {/* <Tab.Screen name="Gerenciar" component={Gerenciar}
+         options={{
+            tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="history" color={color} size={size} />
+            ),
+            headerShown:false,
+            tabBarShowLabel: false,
+            title: 'Gerenciar'
+        }}/> */}
         </Tab.Navigator>
         </NavigationContainer>
         </ItemContext.Provider>

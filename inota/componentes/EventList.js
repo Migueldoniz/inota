@@ -44,10 +44,6 @@ export function EventsListHome(props) {
             <ListItem
                 onPress={() => props.navigation.navigate('EventsForm', events)}
                 bottomDivider>
-                <Avatar
-                    rounded
-                    source={{ uri: events.avatarUrl }} // Corrigindo o acesso à propriedade 'uri' para o avatarUrl
-                />
                 <ListItem.Content>
                     <ListItem.Title style={{ fontSize: 14, fontWeight: '900'}}>{events.nome_evento}</ListItem.Title>
                     <ListItem.Subtitle>{events.lugares}</ListItem.Subtitle>
@@ -89,14 +85,14 @@ export function EventsList(props) {
                 <Button
                     onPress={() => props.navigation.navigate('EventForm', events)}
                     type = 'clear'
-                    icon = {<Icon name = 'edit' size = {25} color = 'orange' />}
+                    icon = {<Icon name = 'edit' size = {25} color = 'black' />}
                 />
                 <Button
                     onPress={() => confirmEventsDeletion(events)}
                     type = 'clear'
-                    icon = {<Icon name = 'delete' size = {25} color = 'red' />}
+                    icon = {<Icon name = 'delete' size = {25} color = 'black' />}
                 />
-            </>
+                </>
             </>
         )
     }
@@ -123,10 +119,6 @@ export function EventsList(props) {
             <ListItem
                 onPress={() => props.navigation.navigate('EventsForm', events)}
                 bottomDivider>
-                <Avatar
-                    rounded
-                    source={{ uri: events.avatarUrl }} // Corrigindo o acesso à propriedade 'uri' para o avatarUrl
-                />
                 <ListItem.Content>
                     <ListItem.Title style={{ fontSize: 13, fontWeight: '900'}}>{events.nome_evento}</ListItem.Title>
                     <ListItem.Subtitle>{events.lugares}</ListItem.Subtitle>
@@ -135,7 +127,7 @@ export function EventsList(props) {
                   <ListItem.Title right style={{ color: 'green', fontSize:12 }}>
                    {events.data}
                   </ListItem.Title>
-                  <ListItem.Subtitle right style={{ color: 'blue', fontSize: 12 }}>{events.qtdingressos} lugares</ListItem.Subtitle>
+                  <ListItem.Subtitle right style={{ color: 'blue', fontSize: 12 }}>{events.qtdingressos} unidades</ListItem.Subtitle>
                 </ListItem.Content>
                 {getActions(events)}
             </ListItem>
