@@ -1,5 +1,4 @@
 rootProject.name = 'inota'
-enableFeaturePreview('VERSION_CATALOGS')
 
 dependencyResolutionManagement {
   versionCatalogs {
