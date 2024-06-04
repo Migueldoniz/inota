@@ -11,6 +11,7 @@ const LoginScreen = ({ navigation }) => {
     username: '',
     password: '',
     samePassword: '',
+    items: [],
     userToken: Math.random() * 100,
   });
   const [flag, setFlag] = React.useState(false)

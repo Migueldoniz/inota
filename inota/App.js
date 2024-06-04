@@ -1,21 +1,17 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, Alert } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import Tab from './componentes/Tab';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import InicialScreen from './componentes/Inicial';
 import LoginScreen from './componentes/Login';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as SplashScreen from 'expo-splash-screen';
 import { AuthContext } from './componentes/Context';
 import CriarConta from './componentes/CriarConta';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import getData from './componentes/GetData';
 
-
-// import LabelRecognizerScreen from './componentes/LabelRecognition';
 const Stack = createStackNavigator();
-SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 
